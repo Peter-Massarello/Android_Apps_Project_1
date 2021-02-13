@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">AndroidProject1</string>
+    <string name="app_name">Mortgage Calculator</string>
+    <string name="test">tester text</string>
+    <string name="year_input">Years:</string>
+    <string name="apr_text">APR:</string>
+    <string name="apr_hint">ex:4.865</string>
+    <string name="escrow_text">Escrow:</string>
+    <string name="escrow_hint">ex:12.50</string>
+    <string name="loan_text">Loan Amount:</string>
+    <string name="loan_hint">ex:10,000</string>
+    <string name="submitButtonText">Submit</string>
+    <string name="clearButtonText">Clear</string>
+    <string-array name="year_array">
+        <item>15</item>
+        <item>30</item>
+        <item>40</item>
+    </string-array>
 </resources>

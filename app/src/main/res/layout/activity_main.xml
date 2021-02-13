@@ -1,18 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:gravity="left"
+    tools:context=".MainActivity"
+    android:padding="15dp"
+    android:background="#FFFFFF">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/year_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/year_input"
+                android:textColor="#000000"
+                android:textSize="25sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="250dp"
+                android:layout_height="45dp"
+                android:background="@drawable/spinner_bg"
+                android:spinnerMode="dropdown" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/apr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/apr_text"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/apr_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/apr_hint"
+                android:inputType="numberDecimal" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/escrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escrow_text"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/escrow_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/escrow_hint"
+                android:inputType="numberDecimal" />
+            </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/loan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/loan_text"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/loan_input"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/loan_hint"
+                android:inputType="numberDecimal" />
+        </TableRow>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="475dp"
+        android:gravity="bottom"
+        android:padding="5dp">
+
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/submitButtonText"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            app:backgroundTint="#6BEA66"/>
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/submitButton"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:text="@string/clearButtonText"
+            app:backgroundTint="#ED4242"/>
+    </RelativeLayout>
+
+
+
+
+
+</TableLayout>
