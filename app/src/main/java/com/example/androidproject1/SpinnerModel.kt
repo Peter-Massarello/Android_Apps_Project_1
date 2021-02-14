@@ -5,10 +5,10 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_main.*
 
-class SpinnerClass(context: Context) {
+class SpinnerModel(context: Context) {
 
     /*init{
-        val adapter = ArrayAdapter.createFromResource(
+        this.adapter = ArrayAdapter.createFromResource(
                 context,
                 R.array.year_array,
                 android.R.layout.simple_spinner_item
