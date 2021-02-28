@@ -10,6 +10,16 @@
     <string name="loan_hint">ex:10,000</string>
     <string name="submitButtonText">Submit</string>
     <string name="clearButtonText">Clear</string>
+    <string name="month">Month #</string>
+    <string name="remaining_loan">Remaining Loan:</string>
+    <string name="amount_toward_interest">Amount toward Interest:</string>
+    <string name="amount_toward_principle">Amount toward Principle:</string>
+    <string name="amount_toward_escrow">Amount toward Escrow:</string>
+    <string name="escrow_amount_value">Escrow Amount Value</string>
+    <string name="principle_amount_value">Principle Amount Value</string>
+    <string name="interest_amount_value">Interest Amount Value</string>
+    <string name="loan_amount_value">Loan Amount Value</string>
+    <string name="monthly_payment">Monthly Payment: #</string>
     <string-array name="year_array">
         <item>15</item>
         <item>30</item>

@@ -1,6 +1,5 @@
 package com.example.androidproject1
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -26,8 +25,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(this.layoutInflater)
         setContentView(binding.root)
-
-        var submitFlag: Boolean = false
 
         val adapter = ArrayAdapter.createFromResource(
                 this,
@@ -71,11 +68,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val escrow = escrow_input.text.toString().toDouble()
         val loan = loan_input.text.toString().toInt()
         val year = spinner.selectedItem.toString().toInt()
-        val intent = Intent(this, MainActivity2::class.java)
-        intent.putExtra("apr", apr)
-        intent.putExtra("escrow", escrow)
-        intent.putExtra("loan", loan)
-        intent.putExtra("year", year)
+        val intent = MainActivity2.newIntent(this, apr, loan, year, escrow)
         startActivity(intent)
     }
 
@@ -97,7 +90,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
            apr_input.error = "Field cannot be blank."
            return false
        }
-       val pattern = "[0-9]+(\\.[0-9]?[0-9]?[0-9]?)".toRegex()
+       val pattern = "[0-9]+(\\.[0-9][0-9]?[0-9]?)".toRegex()
        if(pattern.matches(input)){
            return true
        }
@@ -105,7 +98,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
            apr_input.error = "Must be in format #.### Only 3 decimal places allowed"
            return false
        }
-       return false
     }
 
     private fun validateEscrowText(textView: TextView): Boolean{
@@ -116,15 +108,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             return false
         }
 
-        val pattern = "[0-9]+(\\.[0-9]?[0-9]?)".toRegex()
+        val pattern = "[0-9]+(\\.[0-9][0-9]?)?".toRegex()
         if(pattern.matches(input)){
             return true
         }
         else {
-            escrow_input.error = "Must be in format #.## Only 3 decimal places allowed"
+            escrow_input.error = "Must be in format #.## Only 2 decimal places allowed"
             return false
         }
-        return false
     }
     private fun validateLoanText(textView: TextView): Boolean{
        val input = textView.text.toString()
