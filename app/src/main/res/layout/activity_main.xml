@@ -22,18 +22,17 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="294dp"
+            android:layout_width="350dp"
             android:layout_height="55dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="84dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/spinner_bg"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toTopOf="@+id/apr_input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.518"
+            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
@@ -56,17 +55,14 @@
             android:id="@+id/loan_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="280dp"
+            android:layout_marginBottom="284dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/loan_hint"
             android:inputType="number"
-            android:textSize="25sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="@+id/escrow_input" />
 
         <TextView
             android:id="@+id/escrow"
@@ -85,54 +81,52 @@
             android:ems="10"
             android:hint="@string/escrow_hint"
             android:inputType="numberDecimal"
-            android:textSize="25sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/loan_input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/apr_input" />
 
         <EditText
             android:id="@+id/apr_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="44dp"
             android:ems="10"
             android:hint="@string/apr_hint"
             android:inputType="numberDecimal"
-            android:textSize="25sp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/escrow_input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/spinner" />
 
         <Button
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="96dp"
             android:text="@string/submitButtonText"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:backgroundTint="#6BEA66"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toStartOf="@+id/clearButton"
+            app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="@+id/loan_input"
-            app:layout_constraintTop_toBottomOf="@+id/loan_input"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/loan_input" />
 
         <Button
             android:id="@+id/clearButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="24dp"
             android:layout_toEndOf="@id/submitButton"
             android:text="@string/clearButtonText"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:backgroundTint="#ED4242"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/submitButton"
             app:layout_constraintEnd_toEndOf="@+id/loan_input"
             app:layout_constraintTop_toBottomOf="@+id/loan_input"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
