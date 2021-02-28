@@ -106,7 +106,7 @@
             android:textColor="@color/black"
             android:textSize="25sp"
             app:backgroundTint="#6BEA66"
-
+            android:enabled="false"
             app:layout_constraintEnd_toStartOf="@+id/clearButton"
             app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="@+id/loan_input"

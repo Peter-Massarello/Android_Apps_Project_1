@@ -1,19 +1,17 @@
 package com.example.androidproject1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.IdRes
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidproject1.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.concurrent.TimeoutException
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     
@@ -69,7 +67,16 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun passToNextAct(){
-        Log.e("Item", "${aprFlag}")
+        val apr = apr_input.text.toString().toDouble()
+        val escrow = escrow_input.text.toString().toDouble()
+        val loan = loan_input.text.toString().toInt()
+        val year = spinner.selectedItem.toString().toInt()
+        val intent = Intent(this, MainActivity2::class.java)
+        intent.putExtra("apr", apr)
+        intent.putExtra("escrow", escrow)
+        intent.putExtra("loan", loan)
+        intent.putExtra("year", year)
+        startActivity(intent)
     }
 
     private fun submitFlagCheck(){
@@ -95,7 +102,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
            return true
        }
        else {
-           apr_input.error = "Must have up to 3 decimal places"
+           apr_input.error = "Must be in format #.### Only 3 decimal places allowed"
            return false
        }
        return false
@@ -114,7 +121,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             return true
         }
         else {
-            escrow_input.error = "Must have up to 3 decimal places"
+            escrow_input.error = "Must be in format #.## Only 3 decimal places allowed"
             return false
         }
         return false
