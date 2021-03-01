@@ -2,9 +2,7 @@ package com.example.androidproject1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
@@ -12,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.androidproject1.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(){
     
     lateinit var model: MainViewModel
     lateinit var binding: ActivityMainBinding
@@ -52,7 +50,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         submitButton.setOnClickListener(submitButtonClicked)
 
         clearButton.setOnClickListener(clearButtonClicked)
-        spinner.onItemSelectedListener = this
     }
 
     private val clearButtonClicked = View.OnClickListener { // Once clicked, goes to clear form function
@@ -90,7 +87,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
            apr_input.error = "Field cannot be blank."
            return false
        }
-       val pattern = "[0-9]+(\\.[0-9][0-9]?[0-9]?)".toRegex()
+       val pattern = "[0-9]+(\\.[0-9][0-9]?[0-9]?)?".toRegex()
        if(pattern.matches(input)){
            return true
        }
@@ -133,15 +130,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             return false
         }
     }
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-        Log.e("Item", "${spinner.selectedItem.toString().toInt()}")
-    }
-
 }
 
 

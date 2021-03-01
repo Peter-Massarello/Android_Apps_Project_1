@@ -10,19 +10,30 @@ import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.example_item.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import kotlin.math.pow
 
 class MainActivity2 : AppCompatActivity() {
 
+    //Variables that will hold info from previous activity
     private var apr = 0.0
     private var loan = 0
     private var escrow = 0.0
     private var year = 0
 
+    // Variables for calculations
     private var numOfMonths = 0
     private var monthlyPayment = 0.0
+    private var towardEscrow = 0.0
+    private var towardInterest = 0.0
+    private var towardPrincipal = 0.0
+    private var remainingBalance = 0.0
+    private var remainingBalanceEscrow = 0.0
+
+    private val decimal = DecimalFormat("#.##") // format variable used to format to 2 decimal places
+
 
     companion object{
         fun newIntent(context: Context, aprInput: Double, loanInput: Int, yearInput: Int, escrowInput: Double): Intent{
@@ -39,6 +50,7 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+        // Gather data from intent, defaults set to hint value of text boxes
         var intent = intent
         apr = intent.getDoubleExtra("aprInput", 4.865)
         loan = intent.getIntExtra("loanInput", 10000)
@@ -49,6 +61,7 @@ class MainActivity2 : AppCompatActivity() {
 
         calculateMonthlyPayment()
 
+        // Generates recycler view items
         val exampleList = generateMortageList(numOfMonths)
 
         recycler_view.adapter = ExampleAdapter(exampleList)
@@ -56,11 +69,12 @@ class MainActivity2 : AppCompatActivity() {
         recycler_view.setHasFixedSize(true)
     }
 
+    // Calculates monthly payment
     private fun calculateMonthlyPayment(){
         val monthlyInterest = apr / 1200
         val p1 = (1+monthlyInterest).pow(numOfMonths)
         val textView: TextView = findViewById(R.id.monthly_payment)
-        val decimal = DecimalFormat("#.##")
+
         decimal.roundingMode = RoundingMode.CEILING
 
         monthlyPayment = loan * ((monthlyInterest * p1)/(p1 - 1))
@@ -69,33 +83,43 @@ class MainActivity2 : AppCompatActivity() {
         textView.text = "Monthly Payment: ${decimal.format(monthlyPayment)}"
     }
 
-    private fun towardInterest(){
+    private fun payTowardInterest(remainingBalance: Double): Double{
+        val tempApr = apr / 1200
 
-
+        return tempApr * remainingBalance
     }
 
-    private fun towardPrinciple(){
+    private fun payTowardPrinciple(towardInterest: Double, monthlyPayment: Double): Double{
 
-
+        return monthlyPayment - towardInterest
     }
 
-    private fun towardEscrow(){
-
-
-    }
-
-    private fun remainingBalance(){
-
-
-    }
-
+    // Generates all values of recycler view
     private fun generateMortageList(size: Int): List<ExampleItem>{
 
         val list = ArrayList<ExampleItem>()
+        decimal.roundingMode = RoundingMode.CEILING
+
+        remainingBalance = loan.toDouble()
+
+        remainingBalanceEscrow = loan.toDouble() + (escrow * year)
 
         for (i in 0 until size) {
             val num = i+1
-            val item = ExampleItem("$apr", "$loan", "$escrow", "$year", "Month $num")
+            towardEscrow = escrow / 12
+            towardInterest = payTowardInterest(remainingBalance)
+            towardPrincipal = payTowardPrinciple(towardInterest, monthlyPayment)
+
+            remainingBalance = remainingBalance - towardPrincipal
+
+            remainingBalanceEscrow = remainingBalanceEscrow - towardPrincipal - towardEscrow
+
+            if (remainingBalanceEscrow < 0)
+                    remainingBalanceEscrow = 0.0
+
+            val item = ExampleItem("${decimal.format(remainingBalanceEscrow)}",
+                "${decimal.format(towardInterest)}", "${decimal.format(towardPrincipal)}",
+                "${decimal.format(towardEscrow)}", "Month $num")
             list += item
         }
         return list
